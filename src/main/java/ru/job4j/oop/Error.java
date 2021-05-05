@@ -21,5 +21,7 @@ public class Error {
     public static void main(String[] args) {
         Error error = new Error(true, 3, "We are");
         error.show();
+        Error error1 = new Error();
+        error1.show();
     }
 }
