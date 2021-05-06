@@ -8,6 +8,6 @@ public class Doctor extends Profession {
     public void diagnose() {
     }
 
-    public void heal() {
+    public void healSmth() {
     }
 }
