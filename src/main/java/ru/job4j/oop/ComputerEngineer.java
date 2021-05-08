@@ -1,12 +1,12 @@
 package ru.job4j.oop;
 
 public class ComputerEngineer extends Engineer{
-    Boolean hasCompGrade;
+    private Boolean hasCompGrade;
 
-    ComputerEngineer() {
+    public ComputerEngineer() {
     }
 
-    ComputerEngineer(String name, String surname, String education, String birthday, Boolean hasWorkPermit, Boolean hasCompGrade) {
+    public ComputerEngineer(String name, String surname, String education, String birthday, Boolean hasWorkPermit, Boolean hasCompGrade) {
         super(name, surname, education, birthday, hasWorkPermit);
         this.hasCompGrade = hasCompGrade;
     }
