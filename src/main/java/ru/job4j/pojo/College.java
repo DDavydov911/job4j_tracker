@@ -10,6 +10,8 @@ public class College {
         student.setFullName("Иванов Иван Иванович");
         student.setGropeNumber(11);
         student.setInterDate(LocalDate.of(2020, 9, 1));
-        System.out.println("Студент " + student.getFullName() + ", группа №" + student.getGropeNumber() + ", дата поступления: " + student.getInterDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        System.out.println("Студент " + student.getFullName() + ", группа №"
+                + student.getGropeNumber() + ", дата поступления: "
+                + student.getInterDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
     }
 }
