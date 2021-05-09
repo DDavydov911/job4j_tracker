@@ -7,22 +7,33 @@ public class Tracker {
     private int ids = 1;
     private int size = 0;
 
+    private int indexOf(int id) {
+        for (int i = 0; i < size; i++) {
+            if (items[i].getId() == id) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public Item findById(int id) {
+        int index = indexOf(id);
+        return index != -1 ? items[index] : null;
+    }
+
     public Item add(Item item) {
         item.setId(ids++);
         items[size++] = item;
         return item;
     }
 
-    public Item findById(int id) {
-        Item rsl = null;
-        for (int index = 0; index < size; index++) {
-            Item item = items[index];
-            if (item.getId() == id) {
-                rsl = item;
-                break;
-            }
+    public boolean replace(int id, Item item) {
+        boolean res = false;
+        if (indexOf(id) != -1) {
+            items[indexOf(id)].setName(item.getName());
+            res = true;
         }
-        return rsl;
+        return res;
     }
 
     public Item[] findAll() {
