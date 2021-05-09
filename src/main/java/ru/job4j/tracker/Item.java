@@ -38,4 +38,9 @@ public class Item {
     public LocalDateTime getDateTime() {
         return created;
     }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + " id: " + id;
+    }
 }
