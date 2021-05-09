@@ -4,10 +4,10 @@ public class Book {
     private String name;
     private int pages;
 
-    Book() {
+    public Book() {
     }
 
-    Book(String name, int pages) {
+    public Book(String name, int pages) {
         this.name = name;
         this.pages = pages;
     }
