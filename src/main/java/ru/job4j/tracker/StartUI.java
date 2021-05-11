@@ -2,7 +2,8 @@ package ru.job4j.tracker;
 
 public class StartUI {
     public static void main(String[] args) {
-        Item item = new Item();
+        Item item = new Item("Richard", 22);
+        System.out.println(item);
 
         Tracker tracker = new Tracker();
         tracker.add(new Item("Cap"));
