@@ -35,18 +35,22 @@ public class Tracker {
             items[index] = item;
             res = true;
         }
+        System.out.println("Введены некорректные данные");
         return res;
     }
 
     public boolean delete(int id) {
+        boolean res = false;
         int index = indexOf(id);
         if (index != -1) {
             System.arraycopy(items, index + 1, items, index, size - index - 1);
             items[size - 1] = null;
             size--;
-            return  true;
+            res = true;
+        } else {
+            System.out.println("Введены некорректные данные");
         }
-        return  false;
+        return res;
     }
 
 
