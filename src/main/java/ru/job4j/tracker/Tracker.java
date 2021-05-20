@@ -68,4 +68,8 @@ public class Tracker {
         }
         return Arrays.copyOf(temp, count);
     }
+
+    public int getSize() {
+        return size;
+    }
 }
