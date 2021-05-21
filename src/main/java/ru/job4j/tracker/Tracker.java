@@ -38,17 +38,14 @@ public class Tracker {
     }
 
     public boolean delete(int id) {
-        boolean res = false;
         int index = indexOf(id);
-        if (index != -1) {
+        boolean result = index != -1;
+        if (result) {
             System.arraycopy(items, index + 1, items, index, size - index - 1);
             items[size - 1] = null;
             size--;
-            res = true;
-        } else {
-            System.out.println("Введены некорректные данные");
         }
-        return res;
+        return result;
     }
 
 
