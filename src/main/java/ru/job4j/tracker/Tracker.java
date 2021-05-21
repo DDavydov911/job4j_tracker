@@ -28,15 +28,13 @@ public class Tracker {
     }
 
     public boolean replace(int id, Item item) {
-        boolean res = false;
         int index = indexOf(id);
-        if (index != -1) {
+        boolean result = index != -1;
+        if (result) {
             item.setId(id);
             items[index] = item;
-            res = true;
         }
-        System.out.println("Введены некорректные данные");
-        return res;
+        return result;
     }
 
     public boolean delete(int id) {
