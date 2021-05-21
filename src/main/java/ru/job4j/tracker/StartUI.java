@@ -17,8 +17,8 @@ public class StartUI {
                 Item item = new Item(name);
                 tracker.add(item);
             } else if (select == 1) {
-                for (Object o : tracker.findAll()) {
-                    System.out.println(o);
+                for (Item item : tracker.findAll()) {
+                    System.out.println(item);
                 }
             } else if (select == 2) {
                 System.out.println("Введите id предмета для редактирования");
@@ -42,9 +42,9 @@ public class StartUI {
             } else  if (select == 4) {
                 System.out.println("Введите id заявки");
                 int id = Integer.parseInt(scanner.nextLine());
-                Item item;
-                if (tracker.findById(id) != null) {
-                    System.out.println(tracker.findById(id));
+                Item item = tracker.findById(id);
+                if (item != null) {
+                    System.out.println(item);
                 } else {
                     System.out.println("Заявка с таким id не найдена");
                 }
