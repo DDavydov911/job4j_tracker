@@ -47,7 +47,7 @@ public class StartUITest {
                 new ExitAction()
         };
         new StartUI().init(in, tracker, actions);
-        assertEquals(new Item[0], tracker.findByName("Item 1"));
+        assertNull(tracker.findById(1));
     }
 
     @Test
