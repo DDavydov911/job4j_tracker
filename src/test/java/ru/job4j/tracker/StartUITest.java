@@ -50,35 +50,101 @@ public class StartUITest {
 //        assertNull(tracker.findById(1));
 //    }
 //
-//    @Test
-//    public void whenFindByNameAction() {
-//        Input in = new StubInput(
-//                new String[]{"0", "Item 1", "1", "2"}
-//        );
-//        Tracker tracker = new Tracker();
-//        UserAction[] actions = {
-//                new CreateAction(out),
-//                new ShowAction(),
-//                new ExitAction()
-//        };
-//        new StartUI(out).init(in, tracker, actions);
-//        assertEquals("Item 1", tracker.findAll()[0].getName());
-//    }
-//
-//    @Test
-//    public void whenFindByIdAction() {
-//        Input in = new StubInput(
-//                new String[]{"0", "Item 1", "0", "Item 2", "1", "2", "2"}
-//        );
-//        Tracker tracker = new Tracker();
-//        UserAction[] action = {
-//                new CreateAction(out),
-//                new FindByIdAction(),
-//                new ExitAction()
-//        };
-//        new StartUI(out).init(in, tracker, action);
-//        assertEquals("Item 2", tracker.findById(2).getName());
-//    }
+    @Test
+    public void whenShowAction() {
+        Output output = new StubOutput();
+        Input in = new StubInput(
+                new String[]{"0", "Item 2", "1", "2"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {
+                new CreateAction(output),
+                new ShowAction(output),
+                new ExitAction()
+        };
+        String ls = System.lineSeparator();
+        new StartUI(output).init(in, tracker, actions);
+        assertThat(output.toString(), is("Menu." + ls +
+                "0. Create" + ls +
+                "1. Show all items" + ls +
+                "2. Exit" + ls +
+                "=== Create a new Item ====" + ls +
+                "Menu." + ls +
+                "0. Create" + ls +
+                "1. Show all items" + ls +
+                "2. Exit" + ls +
+                "=== Show all items ====" + ls +
+                "Item{id=1, name='Item 2'}" + ls +
+                "Menu." + ls +
+                "0. Create" + ls +
+                "1. Show all items" + ls +
+                "2. Exit" + ls
+                ));
+    }
+
+    @Test
+    public void whenFindByIdAction() {
+        Output output = new StubOutput();
+        Input in = new StubInput(
+                new String[]{"0", "Item 1", "1", "1", "2"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] action = {
+                new CreateAction(output),
+                new FindByIdAction(output),
+                new ExitAction()
+        };
+        String ls = System.lineSeparator();
+        new StartUI(output).init(in, tracker, action);
+        assertThat(output.toString(), is("Menu."  + ls +
+                "0. Create" + ls +
+                "1. Find item by id" + ls +
+                "2. Exit" + ls +
+                "=== Create a new Item ====" + ls +
+                "Menu."  + ls +
+                "0. Create" + ls +
+                "1. Find item by id" + ls +
+                "2. Exit" + ls +
+                "=== Find item by id ====" + ls +
+                "Item{id=1, name='Item 1'}" + ls +
+                "Menu."  + ls +
+                "0. Create" + ls +
+                "1. Find item by id" + ls +
+                "2. Exit" + ls));
+
+    }
+
+    @Test
+    public void whenFindByNameAction() {
+        Output output = new StubOutput();
+        Input in = new StubInput(
+                new String[]{"0", "Good Item", "1", "Good Item", "2"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {
+                new CreateAction(output),
+                new FindByNameAction(output),
+                new ExitAction()
+        };
+        String ls = System.lineSeparator();
+        new StartUI(output).init(in, tracker, actions);
+        assertThat(output.toString(), is("Menu." + ls +
+                "0. Create" + ls +
+                "1. Find items by name" + ls +
+                "2. Exit" + ls +
+                "=== Create a new Item ====" + ls +
+                "Menu." + ls +
+                "0. Create" + ls +
+                "1. Find items by name" + ls +
+                "2. Exit" + ls +
+                "=== Find items by name ====" + ls +
+                "Item{id=1, name='Good Item'}" + ls +
+                "Menu." + ls +
+                "0. Create" + ls +
+                "1. Find items by name" + ls +
+                "2. Exit" + ls
+        ));
+    }
 
     @Test
     public void whenExit() {
