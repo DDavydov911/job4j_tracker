@@ -54,31 +54,24 @@ public class StartUITest {
     public void whenShowAction() {
         Output output = new StubOutput();
         Input in = new StubInput(
-                new String[]{"0", "Item 2", "1", "2"}
+                new String[]{"0", "1"}
         );
         Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("Item 2"));
         UserAction[] actions = {
-                new CreateAction(output),
                 new ShowAction(output),
                 new ExitAction()
         };
         String ls = System.lineSeparator();
         new StartUI(output).init(in, tracker, actions);
         assertThat(output.toString(), is("Menu." + ls +
-                "0. Create" + ls +
-                "1. Show all items" + ls +
-                "2. Exit" + ls +
-                "=== Create a new Item ====" + ls +
-                "Menu." + ls +
-                "0. Create" + ls +
-                "1. Show all items" + ls +
-                "2. Exit" + ls +
+                "0. Show all items" + ls +
+                "1. Exit" + ls +
                 "=== Show all items ====" + ls +
-                "Item{id=1, name='Item 2'}" + ls +
+                item.toString() + ls +
                 "Menu." + ls +
-                "0. Create" + ls +
-                "1. Show all items" + ls +
-                "2. Exit" + ls
+                "0. Show all items" + ls +
+                "1. Exit" + ls
                 ));
     }
 
@@ -86,31 +79,24 @@ public class StartUITest {
     public void whenFindByIdAction() {
         Output output = new StubOutput();
         Input in = new StubInput(
-                new String[]{"0", "Item 1", "1", "1", "2"}
+                new String[]{"0", "1", "1"}
         );
         Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("Item 123"));
         UserAction[] action = {
-                new CreateAction(output),
                 new FindByIdAction(output),
                 new ExitAction()
         };
         String ls = System.lineSeparator();
         new StartUI(output).init(in, tracker, action);
         assertThat(output.toString(), is("Menu."  + ls +
-                "0. Create" + ls +
-                "1. Find item by id" + ls +
-                "2. Exit" + ls +
-                "=== Create a new Item ====" + ls +
-                "Menu."  + ls +
-                "0. Create" + ls +
-                "1. Find item by id" + ls +
-                "2. Exit" + ls +
+                "0. Find item by id" + ls +
+                "1. Exit" + ls +
                 "=== Find item by id ====" + ls +
-                "Item{id=1, name='Item 1'}" + ls +
+                item.toString() + ls +
                 "Menu."  + ls +
-                "0. Create" + ls +
-                "1. Find item by id" + ls +
-                "2. Exit" + ls));
+                "0. Find item by id" + ls +
+                "1. Exit" + ls));
 
     }
 
@@ -118,31 +104,24 @@ public class StartUITest {
     public void whenFindByNameAction() {
         Output output = new StubOutput();
         Input in = new StubInput(
-                new String[]{"0", "Good Item", "1", "Good Item", "2"}
+                new String[]{"0", "Good Item", "1"}
         );
         Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("Good Item"));
         UserAction[] actions = {
-                new CreateAction(output),
                 new FindByNameAction(output),
                 new ExitAction()
         };
         String ls = System.lineSeparator();
         new StartUI(output).init(in, tracker, actions);
         assertThat(output.toString(), is("Menu." + ls +
-                "0. Create" + ls +
-                "1. Find items by name" + ls +
-                "2. Exit" + ls +
-                "=== Create a new Item ====" + ls +
-                "Menu." + ls +
-                "0. Create" + ls +
-                "1. Find items by name" + ls +
-                "2. Exit" + ls +
+                "0. Find items by name" + ls +
+                "1. Exit" + ls +
                 "=== Find items by name ====" + ls +
-                "Item{id=1, name='Good Item'}" + ls +
+                item.toString() + ls +
                 "Menu." + ls +
-                "0. Create" + ls +
-                "1. Find items by name" + ls +
-                "2. Exit" + ls
+                "0. Find items by name" + ls +
+                "1. Exit" + ls
         ));
     }
 
