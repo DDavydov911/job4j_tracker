@@ -2,6 +2,7 @@ package ru.job4j.ex;
 
 import org.junit.Test;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class FactTest {
@@ -14,8 +15,7 @@ public class FactTest {
     @Test
     public void when3Then6() {
         int res = Fact.calc(3);
-        assertEquals(res, 6);
-//        assertThat(res, is(6)); Почему не проходит?
+        assertThat(res, is(6));
     }
 
 }
