@@ -8,5 +8,8 @@ public class Main {
         System.out.println(st.findById(1));
         Tracker st2 = SingleTracker.getInstance();
         System.out.println(st2.findById(1));
+        st2.replace(1, new Item("item444"));
+        System.out.println(st.findById(1));
+        System.out.println(st2.findById(1));
     }
 }
