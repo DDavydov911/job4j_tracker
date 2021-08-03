@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class SortByPriorityJobTest {
 
     @Test
-    public void WhenPriorityRises() {
+    public void whenPriorityRises() {
         Comparator<Job> cmpRisePrioriry = new SortByPriorityJob();
         int result = cmpRisePrioriry.compare(
                 new Job("Fix bug", 1),

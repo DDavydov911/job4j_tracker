@@ -17,9 +17,9 @@ public class Battery {
 
     public static void main(String[] args) {
         Battery energizer = new Battery(100);
-        Battery Cosmos = new Battery(30);
-        System.out.println("Energizer: " + energizer.load + ", Cosmos: " + Cosmos.load);
-        Cosmos.exchange(energizer);
-        System.out.println("Energizer: " + energizer.load + ", Cosmos: " + Cosmos.load);
+        Battery cosmos = new Battery(30);
+        System.out.println("Energizer: " + energizer.load + ", Cosmos: " + cosmos.load);
+        cosmos.exchange(energizer);
+        System.out.println("Energizer: " + energizer.load + ", Cosmos: " + cosmos.load);
     }
 }

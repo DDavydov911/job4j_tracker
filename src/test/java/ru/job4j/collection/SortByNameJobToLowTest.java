@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class SortByNameJobToLowTest {
 
     @Test
-    public void WhenNameToLow() {
+    public void whenNameToLow() {
         Comparator<Job> cmpNameReversePriority = new SortByNameJobToLow();
         int result = cmpNameReversePriority.compare(
                 new Job("Impl task", 0),

@@ -29,9 +29,9 @@ public class ValidateInputTest {
         out.println(input.askInt("Enter menu:"));
         out.println(input.askInt("Enter menu:"));
         String ls = System.lineSeparator();
-        assertThat(out.toString(), is("2" + ls +
-                                            "5" + ls +
-                                            "0" + ls
+        assertThat(out.toString(), is("2" + ls
+                + "5" + ls
+                + "0" + ls
         ));
     }
 
@@ -45,6 +45,4 @@ public class ValidateInputTest {
         int selected = input.askInt("Enter menu:");
         assertThat(selected, is(-2));
     }
-
-
 }

@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class SortByNameJobToHiTest {
 
     @Test
-    public void WhenNameToHi() {
+    public void whenNameToHi() {
         Comparator<Job> cmpNameToHi = new SortByNameJobToHi();
         int result = cmpNameToHi.compare(
                 new Job("Fix bug", 1),

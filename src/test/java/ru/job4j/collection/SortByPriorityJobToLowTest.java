@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 public class SortByPriorityJobToLowTest {
 
     @Test
-    public void WhenPriorityToLow() {
+    public void whenPriorityToLow() {
         Comparator<Job> cmpToLowPrioriry = new SortByPriorityJobToLow();
         int result = cmpToLowPrioriry.compare(
                 new Job("Fix bug", 1),

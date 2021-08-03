@@ -70,14 +70,14 @@ public class StartUITest {
         );
         String ls = System.lineSeparator();
         new StartUI(output).init(in, tracker, actions);
-        assertThat(output.toString(), is("Menu." + ls +
-                "0. Show all items" + ls +
-                "1. Exit" + ls +
-                "=== Show all items ====" + ls +
-                item + ls +
-                "Menu." + ls +
-                "0. Show all items" + ls +
-                "1. Exit" + ls
+        assertThat(output.toString(), is("Menu." + ls
+                        + "0. Show all items" + ls
+                        + "1. Exit" + ls
+                        + "=== Show all items ====" + ls
+                        + item + ls
+                        + "Menu." + ls
+                        + "0. Show all items" + ls
+                        + "1. Exit" + ls
                 ));
     }
 
@@ -95,14 +95,14 @@ public class StartUITest {
         );
         String ls = System.lineSeparator();
         new StartUI(output).init(in, tracker, action);
-        assertThat(output.toString(), is("Menu."  + ls +
-                "0. Find item by id" + ls +
-                "1. Exit" + ls +
-                "=== Find item by id ====" + ls +
-                item + ls +
-                "Menu."  + ls +
-                "0. Find item by id" + ls +
-                "1. Exit" + ls));
+        assertThat(output.toString(), is("Menu."  + ls
+                + "0. Find item by id" + ls
+                + "1. Exit" + ls
+                + "=== Find item by id ====" + ls
+                + item + ls
+                + "Menu."  + ls
+                + "0. Find item by id" + ls
+                + "1. Exit" + ls));
 
     }
 
@@ -120,14 +120,14 @@ public class StartUITest {
         );
         String ls = System.lineSeparator();
         new StartUI(output).init(in, tracker, actions);
-        assertThat(output.toString(), is("Menu." + ls +
-                "0. Find items by name" + ls +
-                "1. Exit" + ls +
-                "=== Find items by name ====" + ls +
-                item + ls +
-                "Menu." + ls +
-                "0. Find items by name" + ls +
-                "1. Exit" + ls
+        assertThat(output.toString(), is("Menu." + ls
+                + "0. Find items by name" + ls
+                + "1. Exit" + ls
+                + "=== Find items by name ====" + ls
+                + item + ls
+                + "Menu." + ls
+                + "0. Find items by name" + ls
+                + "1. Exit" + ls
         ));
     }
 
@@ -143,8 +143,8 @@ public class StartUITest {
         );
         new StartUI(output).init(in, tracker, actions);
         assertThat(output.toString(), is(
-                "Menu." + System.lineSeparator() +
-                        "0. Exit" + System.lineSeparator()
+                "Menu." + System.lineSeparator()
+                        + "0. Exit" + System.lineSeparator()
         ));
     }
 
@@ -160,11 +160,11 @@ public class StartUITest {
         );
         new StartUI(output).init(in, tracker, actions);
         String ls = System.lineSeparator();
-        assertThat(output.toString(), is("Menu." + ls +
-                "0. Exit" + ls +
-                "Wrong input, you can select: 0 .. 0" + ls +
-                "Menu." + ls +
-                "0. Exit" + ls
+        assertThat(output.toString(), is("Menu." + ls
+                + "0. Exit" + ls
+                + "Wrong input, you can select: 0 .. 0" + ls
+                + "Menu." + ls
+                + "0. Exit" + ls
         ));
     }
 }

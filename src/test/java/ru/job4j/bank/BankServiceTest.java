@@ -24,7 +24,6 @@ public class BankServiceTest {
         assertNull(bank.findByRequisite("34", "5546"));
     }
 
-
     @Test
     public void addAccount() {
         User user = new User("3434", "Petr Arsentev");

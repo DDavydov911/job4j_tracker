@@ -46,7 +46,6 @@ public class Tracker {
         return result;
     }
 
-
     public List<Item> findAll() {
         return List.copyOf(items);
     }
