@@ -7,19 +7,15 @@ public class StringCompare implements Comparator<String> {
     @Override
     public int compare(String str1, String str2) {
         int result = 0;
-        int length1 = str1.length();
-        int length2 = str2.length();
-        int length = Math.min(length1, length2);
+        int length = Math.min(str1.length(), str2.length());
         for (int i = 0; i < length; i++) {
-            char left = str1.charAt(i);
-            char right = str2.charAt(i);
-            result = Character.compare(left, right);
+            result = Character.compare(str1.charAt(i), str2.charAt(i));
             if (result != 0) {
                 break;
             }
         }
         if (result == 0) {
-            result = Integer.compare(length1, length2);
+            result = Integer.compare(str1.length(), str2.length());
         }
         return result;
     }
