@@ -19,6 +19,7 @@ notifications:
     on_success: never # default: change
     on_failure: always # default: always
 
+
 # Интеграция с сервисом https://about.codecov.io/, который выполняет подсчет статистики покрытия тестами,
 #  а также выполняет удобное оформление этой статистики и навигацию по всем файлам проекта.
 env:
