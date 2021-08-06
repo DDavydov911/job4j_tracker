@@ -14,7 +14,7 @@ public class DepDescCompTest {
             "K2/SK1/SSK2",
             "K2/SK1/SSK1"
     );
-    assertThat(res, lessThan(0));
+    assertThat(res, greaterThan(0));
     }
 
     @Test
@@ -23,6 +23,6 @@ public class DepDescCompTest {
                 "K2",
                 "K2/SK1"
         );
-        assertThat(res, greaterThan(0));
+        assertThat(res, lessThan(0));
     }
 }
