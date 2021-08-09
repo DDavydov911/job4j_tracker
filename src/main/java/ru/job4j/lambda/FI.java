@@ -11,29 +11,31 @@ public class FI {
                 new Attachment("image 3", 120),
                 new Attachment("image 20", 23)
         };
-        Consumer<Attachment[]> print = (ats) -> {
-            for (Attachment att : ats) {
-                System.out.println(att);
-            }
-            System.out.println();
-        };
-        print.accept(atts);
         Comparator<Attachment> comparator = new Comparator<>() {
             @Override
             public int compare(Attachment left, Attachment right) {
                 return left.getSize() - right.getSize();
             }
         };
-        Arrays.sort(atts, comparator);
-        print.accept(atts);
 
         Comparator<Attachment> cmpText = (left, right) -> left.getName().compareTo(right.getName());
-        Arrays.sort(atts, cmpText);
-        print.accept(atts);
+        // 1. Объявляем тип переменной Comparator
+        // 2. Указываем тип обобщения "Attachment", которое так же будет типом
+        //    переменных для параметров left и right
+        // 3. Присваевем переменной ссылку на лямбду
+        // 4. Указываем в скобках параметры left и right
+        // 5. После стрелки описываем тело метода который вернет сравнение строковых
+        //    значение полей name аргументов left и right
 
         Comparator<Attachment> cmpDescSize = (left, right) -> right.getName().length()
                 - left.getName().length();
-        Arrays.sort(atts, cmpDescSize);
-        print.accept(atts);
+        // 1. Объявляем тип переменной Comparator
+        // 2. Указываем тип обобщения "Attachment", которое так же будет типом
+        //    переменных для параметров left и right
+        // 3. Присваевем переменной ссылку на лямбду
+        // 4. Указываем в скобках параметры left и right
+        // 5. После стрелки описываем тело метода, который вернет разницу между
+        //    длинной строкового значения поля name аргумента right из длинной
+        //    строкового значения поля name аргумента left
     }
 }
