@@ -19,7 +19,6 @@ public class Folder {
         return size;
     }
 
-    @SuppressWarnings("checkstyle:NeedBraces")
     @Override
     public boolean equals(Object o) {
         if (this == o) {
