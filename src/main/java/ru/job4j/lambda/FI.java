@@ -27,8 +27,8 @@ public class FI {
         // 5. После стрелки описываем тело метода который вернет сравнение строковых
         //    значение полей name аргументов left и right
 
-        Comparator<Attachment> cmpDescSize = (left, right) -> right.getName().length()
-                - left.getName().length();
+        Comparator<Attachment> cmpDescSize = (left, right) -> Integer.compare(
+                right.getName().length(), left.getName().length());
         // 1. Объявляем тип переменной Comparator
         // 2. Указываем тип обобщения "Attachment", которое так же будет типом
         //    переменных для параметров left и right
