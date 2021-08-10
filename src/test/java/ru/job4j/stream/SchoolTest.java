@@ -3,7 +3,9 @@ package ru.job4j.stream;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import static org.hamcrest.Matchers.is;
@@ -66,5 +68,21 @@ public class SchoolTest {
         expected.add(new Student(30, "Surname3"));
         expected.add(new Student(40, "Surname4"));
         assertThat(rsl, is(expected));
+    }
+
+    @Test
+    public void maping() {
+        Student st1 = new Student(40, "Surname1");
+        Student st2 = new Student(40, "Surname1");
+        Student st3 = new Student(80, "Surname3");
+        Student st4 = new Student(90, "Surname4");
+        List<Student> students = List.of(st1, st2, st3, st4);
+        School sc = new School();
+        Map<String, Student> expected = new HashMap<>();
+        expected.put(st1.getSurname(), st1);
+        expected.put(st3.getSurname(), st3);
+        expected.put(st4.getSurname(), st4);
+        Map<String, Student> result = sc.maping(students);
+        assertThat(result, is(expected));
     }
 }
