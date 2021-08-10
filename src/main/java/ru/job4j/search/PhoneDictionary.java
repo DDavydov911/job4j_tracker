@@ -22,8 +22,7 @@ public class PhoneDictionary {
                 person.getPhone().contains(key);
         Predicate<Person> hasAddress = (person) ->
                 person.getAddress().contains(key);
-        Predicate<Person> combine = (person) -> hasName.test(person) || hasSurname.test(person)
-                || hasPhone.test(person) || hasAddress.test(person);
+        Predicate<Person> combine = hasName.or(hasSurname).or(hasPhone).or(hasAddress);
         for (Person person : persons) {
             if (combine.test(person)) {
                 result.add(person);
