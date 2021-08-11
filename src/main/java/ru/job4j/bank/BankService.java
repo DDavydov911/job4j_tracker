@@ -25,7 +25,7 @@ public class BankService {
     }
 
     /**
-     * Метод добаляет пользователю новый счет, проверяя его сначала на существование
+     * Метод добавляет пользователю новый счет, проверяя его сначала на существование
      * @param passport данные паспорта
      * @param account данные счета
      */
@@ -45,12 +45,17 @@ public class BankService {
      * @return возвращает пользователя
      */
     public User findByPassport(String passport) {
-        for (User user : users.keySet()) {
-            if (passport.equals(user.getPassport())) {
-                return user;
-            }
-        }
-        return null;
+//        for (User user : users.keySet()) {
+//            if (passport.equals(user.getPassport())) {
+//                return user;
+//            }
+//        }
+//        return null;
+        return users.keySet()
+                .stream()
+                .filter(p -> passport.equals(p.getPassport()))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -62,11 +67,16 @@ public class BankService {
     public Account findByRequisite(String passport, String requisite) {
         User user = findByPassport(passport);
         if (user != null) {
-            for (Account account : users.get(user)) {
-                if (requisite.equals(account.getRequisite())) {
-                    return account;
-                }
-            }
+//            for (Account account : users.get(user)) {
+//                if (requisite.equals(account.getRequisite())) {
+//                    return account;
+//                }
+//            }
+            return users.get(user)
+                    .stream()
+                    .filter(account -> requisite.equals(account.getRequisite()))
+                    .findFirst()
+                    .orElse(null);
         }
         return null;
     }
