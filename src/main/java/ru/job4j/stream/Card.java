@@ -8,4 +8,12 @@ public class Card {
         this.suit = suit;
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        return "Card{"
+                + "suit=" + suit
+                + ", value=" + value
+                + '}';
+    }
 }
