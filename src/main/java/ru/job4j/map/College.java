@@ -1,6 +1,7 @@
 package ru.job4j.map;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 public class College {
@@ -10,51 +11,29 @@ public class College {
         this.students = students;
     }
 
-    public Student findByAccount(String account) {
-/*
-        for (Student s : students.keySet()) {
-            if (s.getAccount().equals(account)) {
-                return s;
+    public Optional<Student> findByAccount(String account) {
+        Optional<Student> rsl = Optional.empty();
+        for (Student s: students.keySet()) {
+            if (account.equals(s.getAccount())) {
+                rsl = Optional.of(s);
+                break;
             }
         }
-*/
-        return students.keySet()
-                .stream()
-                .filter(s -> s.getAccount().equals(account))
-                .findFirst()
-                .orElse(null);
-
-//        return null;
+        return rsl;
     }
 
-    public Subject findBySubjectName(String account, String name) {
-        Student a = findByAccount(account);
-        if (a != null) {
-            Set<Subject> subjects = students.get(a);
-            return subjects.stream()
-                    .filter(s -> s.getName().equals(name))
-                    .findFirst()
-                    .orElse(null);
-//            for (Subject s : subjects) {
-//                if (s.getName().equals(name)) {
-//                    return s;
-//                }
-//            }
+    public Optional<Subject> findBySubjectName(String account, String name) {
+        Optional<Subject> rsl = Optional.empty();
+        Optional<Student> s = findByAccount(account);
+        if (s.isPresent()) {
+            Set<Subject> subjects = students.get(s.get());
+            for (Subject subj : subjects) {
+                if (name.equals(subj.getName())) {
+                    rsl = Optional.of(subj);
+                    break;
+                }
+            }
         }
-        return null;
-    }
-
-    public static void main(String[] args) {
-        Map<Student, Set<Subject>> students = Map.of(new Student("Student", "000001", "201-18-15"),
-                Set.of(
-                        new Subject("Math", 70),
-                        new Subject("English", 85)
-                )
-        );
-        College college = new College(students);
-        Student student = college.findByAccount("000001");
-        System.out.println("Найденный студент: " + student);
-        Subject english = college.findBySubjectName("000001", "English");
-        System.out.println("Оценка по найденному предмету: " + english.getScore());
+        return rsl;
     }
 }
