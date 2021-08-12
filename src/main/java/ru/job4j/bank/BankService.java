@@ -27,7 +27,7 @@ public class BankService {
      * @param account данные счета
      */
     public void addAccount(String passport, Account account) {
-        Optional<User> user = Optional.of(findByPassport(passport));
+        Optional<User> user = Optional.ofNullable(findByPassport(passport));
         if (user.isPresent()) {
             //Почему-то IDEA предлагает убрать условие, не пойму почему. Почему всегда true?
             List<Account> list = users.get(user.get());
@@ -57,7 +57,7 @@ public class BankService {
      * @return возвращает пользователя
      */
     public Account findByRequisite(String passport, String requisite) {
-        Optional<User> user = Optional.of(findByPassport(passport));
+        Optional<User> user = Optional.ofNullable(findByPassport(passport));
         return user.flatMap(value -> users.get(value)
                 .stream()
                 .filter(account -> requisite.equals(account.getRequisite()))
