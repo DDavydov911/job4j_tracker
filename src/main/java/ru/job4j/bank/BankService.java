@@ -1,9 +1,6 @@
 package ru.job4j.bank;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Класс представляет собой подобие банковского сервиса с добавлением пользвателеей
@@ -30,9 +27,10 @@ public class BankService {
      * @param account данные счета
      */
     public void addAccount(String passport, Account account) {
-        User user = findByPassport(passport);
-        if (user != null) {
-            List<Account> list = users.get(user);
+        Optional<User> user = Optional.of(findByPassport(passport));
+        if (user.isPresent()) {
+            //Почему-то IDEA предлагает убрать условие, не пойму почему. Почему всегда true?
+            List<Account> list = users.get(user.get());
             if (!list.contains(account)) {
                 list.add(account);
             }
@@ -59,15 +57,11 @@ public class BankService {
      * @return возвращает пользователя
      */
     public Account findByRequisite(String passport, String requisite) {
-        User user = findByPassport(passport);
-        if (user != null) {
-            return users.get(user)
-                    .stream()
-                    .filter(account -> requisite.equals(account.getRequisite()))
-                    .findFirst()
-                    .orElse(null);
-        }
-        return null;
+        Optional<User> user = Optional.of(findByPassport(passport));
+        return user.flatMap(value -> users.get(value)
+                .stream()
+                .filter(account -> requisite.equals(account.getRequisite()))
+                .findFirst()).orElse(null);
     }
 
     /**
