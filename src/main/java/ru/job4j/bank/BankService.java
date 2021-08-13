@@ -27,9 +27,8 @@ public class BankService {
      * @param account данные счета
      */
     public void addAccount(String passport, Account account) {
-        Optional<User> user = Optional.ofNullable(findByPassport(passport));
+        Optional<User> user = findByPassport(passport);
         if (user.isPresent()) {
-            //Почему-то IDEA предлагает убрать условие, не пойму почему. Почему всегда true?
             List<Account> list = users.get(user.get());
             if (!list.contains(account)) {
                 list.add(account);
@@ -42,12 +41,11 @@ public class BankService {
      * @param passport данные паспорта
      * @return возвращает пользователя
      */
-    public User findByPassport(String passport) {
+    public Optional<User> findByPassport(String passport) {
         return users.keySet()
                 .stream()
                 .filter(p -> passport.equals(p.getPassport()))
-                .findFirst()
-                .orElse(null);
+                .findFirst();
     }
 
     /**
@@ -56,12 +54,12 @@ public class BankService {
      * @param requisite данные счета
      * @return возвращает пользователя
      */
-    public Account findByRequisite(String passport, String requisite) {
-        Optional<User> user = Optional.ofNullable(findByPassport(passport));
+    public Optional<Account> findByRequisite(String passport, String requisite) {
+        Optional<User> user = findByPassport(passport);
         return user.flatMap(value -> users.get(value)
                 .stream()
                 .filter(account -> requisite.equals(account.getRequisite()))
-                .findFirst()).orElse(null);
+                .findFirst());
     }
 
     /**
@@ -77,12 +75,13 @@ public class BankService {
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
         boolean rsl = false;
-            Account srcAccount = findByRequisite(srcPassport, srcRequisite);
-            Account destAccount = findByRequisite(destPassport, destRequisite);
+            Optional<Account> srcAccount = findByRequisite(srcPassport, srcRequisite);
+            Optional<Account> destAccount = findByRequisite(destPassport, destRequisite);
 
-        if (srcAccount != null && destAccount != null && amount <= srcAccount.getBalance()) {
-            srcAccount.setBalance(srcAccount.getBalance() - amount);
-            destAccount.setBalance(destAccount.getBalance() + amount);
+        if (srcAccount.isPresent() && destAccount.isPresent()
+                && amount <= srcAccount.get().getBalance()) {
+            srcAccount.get().setBalance(srcAccount.get().getBalance() - amount);
+            destAccount.get().setBalance(destAccount.get().getBalance() + amount);
             rsl = true;
         }
         return rsl;
