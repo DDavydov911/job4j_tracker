@@ -51,13 +51,8 @@ public class Analyze {
                         Collectors.summingDouble(Subject::getScore)))
                 .entrySet()
                 .stream()
-                .map(entryes -> new Tuple(entryes.getKey(), entryes.getValue())))
-                .max(new Comparator<Tuple>() {
-                    @Override
-                    public int compare(Tuple o1, Tuple o2) {
-                        return Double.compare(o1.getScore(), o2.getScore());
-                    }
-                })
+                .map(entries -> new Tuple(entries.getKey(), entries.getValue())))
+                .max(Comparator.comparingDouble(Tuple::getScore))
                 .orElse(null);
     }
 
