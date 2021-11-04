@@ -54,7 +54,7 @@ public class AnalyzeTest {
                                 new Subject("Lang", 60)))
                 ).stream()
         );
-        //Правильный ли здесь порядок элементов?
+
         assertThat(average, is(List.of(
                 new Tuple("Math", 80D),
                 new Tuple("Lang", 80D)

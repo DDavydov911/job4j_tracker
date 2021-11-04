@@ -64,8 +64,10 @@ public class Pet {
     public static void main(String[] args) {
         Pet pet = new Builder().buildAnimalType("Cat")
                 .buildName("Murka")
-//                .buildAge((byte) 3)
-//                .buildHeight(0.27D)
+                /*
+                .buildAge((byte) 3)
+                .buildHeight(0.27D)
+                 */
                 .buildWeight(3.1D)
                 .build();
         System.out.println(pet);

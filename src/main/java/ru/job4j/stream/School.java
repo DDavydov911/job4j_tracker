@@ -15,11 +15,16 @@ public class School {
 
     public Map<String, Student> maping(List<Student> students) {
         return students.stream()
-//                .distinct() //проще всего
+                /*
+                   .distinct() проще всего
+                 */
                 .collect(Collectors.toMap(
                         Student::getSurname,
                         e -> e,
-                        (a, b) -> a //но так интересней
+                        (a, b) -> a
+                        /*
+                        но так интересней
+                         */
                 ));
     }
 
