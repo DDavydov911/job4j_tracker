@@ -10,10 +10,30 @@ public class SqlTracker implements Store {
 
     private Connection cn;
 
+    public static void main(String[] args) {
+        Output output = new ConsoleOutput();
+        Input input = new ValidateInput(output, new ConsoleInput());
+        try (Store tracker = new SqlTracker()) {
+            tracker.init();
+            List<UserAction> actions = List.of(
+                    new CreateAction(output),
+                    new ReplaceAction(output),
+                    new DeleteAction(output),
+                    new FindAllAction(output),
+                    new FindByIdAction(output),
+                    new FindByNameAction(output),
+                    new ExitAction()
+            );
+            new StartUI(output).init(input, tracker, actions);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void init() {
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream(
-                "src/main/resources/app.properties"
-        )) {
+                "app.properties")
+        ) {
             Properties config = new Properties();
             config.load(in);
             Class.forName(config.getProperty("driver-class-name"));
@@ -55,7 +75,7 @@ public class SqlTracker implements Store {
     public boolean replace(int id, Item item) {
         boolean result = false;
         try (PreparedStatement statement = cn.prepareStatement(
-                "UPDATE TABLE items(?, ?) WHERE id = ?;"
+                "UPDATE items SET name=?, created=? WHERE id = ?;"
         )) {
             statement.setString(1, item.getName());
             statement.setTimestamp(2, item.getTimestamp());
@@ -143,25 +163,5 @@ public class SqlTracker implements Store {
             e.printStackTrace();
         }
         return result;
-    }
-
-    public static void main(String[] args) {
-        Output output = new ConsoleOutput();
-        Input input = new ValidateInput(output, new ConsoleInput());
-        try (Store tracker = new SqlTracker()) {
-            tracker.init();
-            List<UserAction> actions = List.of(
-                    new CreateAction(output),
-                    new ReplaceAction(output),
-                    new DeleteAction(output),
-                    new FindAllAction(output),
-                    new FindByIdAction(output),
-                    new FindByNameAction(output),
-                    new ExitAction()
-            );
-            new StartUI(output).init(input, tracker, actions);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

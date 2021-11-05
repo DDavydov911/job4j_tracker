@@ -30,19 +30,19 @@ public class StartUI {
         }
     }
 
-    public static void main(String[] args) {
-        Output output = new ConsoleOutput();
-        Input input = new ValidateInput(output, new ConsoleInput());
-        Store tracker = new MemTracker();
-        List<UserAction> actions = List.of(
-                new CreateAction(output),
-                new ShowAction(output),
-                new ReplaceAction(output),
-                new DeleteAction(output),
-                new FindByIdAction(output),
-                new FindByNameAction(output),
-                new ExitAction()
-        );
-        new StartUI(output).init(input, tracker, actions);
-    }
+//    public static void main(String[] args) {
+//        Output output = new ConsoleOutput();
+//        Input input = new ValidateInput(output, new ConsoleInput());
+//        Store tracker = new MemTracker();
+//        List<UserAction> actions = List.of(
+//                new CreateAction(output),
+//                new ShowAction(output),
+//                new ReplaceAction(output),
+//                new DeleteAction(output),
+//                new FindByIdAction(output),
+//                new FindByNameAction(output),
+//                new ExitAction()
+//        );
+//        new StartUI(output).init(input, tracker, actions);
+//    }
 }

@@ -11,7 +11,7 @@ public class FindAllAction implements UserAction {
 
     @Override
     public String name() {
-        return "Find items by name";
+        return "Find All";
     }
 
     @Override
