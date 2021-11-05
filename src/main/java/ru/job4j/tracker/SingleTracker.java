@@ -3,7 +3,7 @@ package ru.job4j.tracker;
 import java.util.List;
 
 public final class SingleTracker {
-    private static Tracker tracker = new Tracker();
+    private static MemTracker tracker = new MemTracker();
     private  static SingleTracker instance = null;
 
     private SingleTracker() {

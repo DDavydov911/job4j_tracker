@@ -7,9 +7,9 @@ import java.util.List;
 public class ItemSorter {
     public static void main(String[] args) {
         List<Item> items = Arrays.asList(
-                new Item("Three", 3),
-                new Item("One", 1),
-                new Item("Two", 2)
+                new Item(3, "Three"),
+                new Item(1, "One"),
+                new Item(2, "Two")
         );
         System.out.println(items);
         Collections.sort(items, new SortItemByIdToHi());

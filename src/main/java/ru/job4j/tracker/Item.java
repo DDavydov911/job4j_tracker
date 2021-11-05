@@ -14,6 +14,11 @@ public class Item {
     private String name;
     private LocalDateTime created;
 
+    public Item(String name) {
+        this.name = name;
+        this.created = LocalDateTime.now();
+    }
+
     public Item(int id, String name) {
         this.id = id;
         this.name = name;

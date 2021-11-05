@@ -12,9 +12,9 @@ public class SortItemByNameTest {
 
     @Test
     public void compare() {
-        Item itemOne = new Item("One", 1);
-        Item itemTwo = new Item("Two", 2);
-        Item itemThree = new Item("Three", 3);
+        Item itemOne = new Item(1, "One");
+        Item itemTwo = new Item(2, "Two");
+        Item itemThree = new Item(3, "Three");
         List<Item> items = Arrays.asList(itemTwo, itemOne, itemThree);
         List<Item> expected = Arrays.asList(itemOne, itemThree, itemTwo);
         Collections.sort(items, new SortItemByName());

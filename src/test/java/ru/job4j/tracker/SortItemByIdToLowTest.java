@@ -12,9 +12,9 @@ public class SortItemByIdToLowTest {
 
     @Test
     public void compare() {
-        Item item1 = new Item("One", 1);
-        Item item2 = new Item("Two", 2);
-        Item item3 = new Item("Three", 3);
+        Item item1 = new Item(1, "One");
+        Item item2 = new Item(2, "Two");
+        Item item3 = new Item(3, "Three");
         List<Item> items = Arrays.asList(item2, item1, item3);
         List<Item> expected = Arrays.asList(item3, item2, item1);
         Collections.sort(items, new SortItemByIdToLow());
