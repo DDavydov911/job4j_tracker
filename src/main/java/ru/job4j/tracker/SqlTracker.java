@@ -12,7 +12,7 @@ public class SqlTracker implements Store {
 
     public void init() {
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream(
-                "app.properties"
+                "src/main/resources/app.properties"
         )) {
             Properties config = new Properties();
             config.load(in);
