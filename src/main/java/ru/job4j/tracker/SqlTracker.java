@@ -61,8 +61,13 @@ public class SqlTracker implements Store {
                 "INSERT INTO items(name, created) VALUES (?, ?);"
         )) {
             statement.setString(1, item.getName());
-            statement.setTimestamp(2, item.getTimestamp());
+            statement.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
             if (statement.executeUpdate() > 0) {
+                try (ResultSet generatedKey = statement.getGeneratedKeys()) {
+                    if (generatedKey.next()) {
+                        item.setId(generatedKey.getInt(1));
+                    }
+                }
                 result = item;
             }
         } catch (SQLException e) {
@@ -78,7 +83,7 @@ public class SqlTracker implements Store {
                 "UPDATE items SET name=?, created=? WHERE id = ?;"
         )) {
             statement.setString(1, item.getName());
-            statement.setTimestamp(2, item.getTimestamp());
+            statement.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
             statement.setInt(3, id);
             result = statement.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -112,7 +117,7 @@ public class SqlTracker implements Store {
                     list.add(new Item(
                             resultSet.getInt("id"),
                             resultSet.getString("name"),
-                            resultSet.getTimestamp("created")
+                            resultSet.getTimestamp("created").toLocalDateTime()
                     ));
                 }
             }
@@ -134,7 +139,7 @@ public class SqlTracker implements Store {
                     list.add(new Item(
                             resultSet.getInt("id"),
                             resultSet.getString("name"),
-                            resultSet.getTimestamp("created")
+                            resultSet.getTimestamp("created").toLocalDateTime()
                     ));
                 }
             }
@@ -152,12 +157,13 @@ public class SqlTracker implements Store {
         )) {
             statement.setInt(1, id);
             try (ResultSet res = statement.executeQuery()) {
-                res.next();
-                result = new Item(
-                        res.getInt("id"),
-                        res.getString("name"),
-                        res.getTimestamp("created")
-                );
+                if (res.next()) {
+                    result = new Item(
+                            res.getInt("id"),
+                            res.getString("name"),
+                            res.getTimestamp("created").toLocalDateTime()
+                    );
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();

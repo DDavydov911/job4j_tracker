@@ -25,10 +25,10 @@ public class Item {
         this.created = LocalDateTime.now();
     }
 
-    public Item(int id, String name, Timestamp timestamp) {
+    public Item(int id, String name, LocalDateTime time) {
         this.id = id;
         this.name = name;
-        this.created = timestamp.toLocalDateTime();
+        this.created = time;
     }
 
     public int getId() {
@@ -49,10 +49,6 @@ public class Item {
 
     public LocalDateTime getCreated() {
         return created;
-    }
-
-    public Timestamp getTimestamp() {
-        return Timestamp.valueOf(getCreated());
     }
 
     @Override
