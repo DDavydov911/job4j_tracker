@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
@@ -98,7 +99,7 @@ public class StartUITest {
         assertThat(output.toString(), is("Menu."  + ls
                 + "0. Find item by id" + ls
                 + "1. Exit" + ls
-                + "=== Find item by id ====" + ls
+                + "=== Find item by id ===" + ls
                 + item + ls
                 + "Menu."  + ls
                 + "0. Find item by id" + ls
