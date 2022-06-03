@@ -6,6 +6,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -89,14 +90,13 @@ public class HbmTracker implements Store {
     }
 
     public static void main(String[] args) {
+        /**
         HbmTracker tracker = new HbmTracker();
-        Item item = new Item("item20");
-        Item item1 = new Item("item21");
-        System.out.println(tracker.add(item));
-        System.out.println(tracker.findById(item.getId()));
-        System.out.println(tracker.findByName("item20"));
-        System.out.println(tracker.replace(item.getId(), item1));
+        Item item170522 = new Item("170522", new Timestamp(1459510232000L), "NewTask");
+        System.out.println(tracker.add(item170522));
+        System.out.println(tracker.findById(item170522.getId()));
+        System.out.println(tracker.findByName("170522"));
         System.out.println(tracker.findAll());
-        System.out.println(tracker.delete(item1.getId()));
+        */
     }
 }
