@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import ru.job4j.tracker.store.Observe;
+
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
@@ -109,6 +111,20 @@ public class SqlTracker implements Store {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public void reactiveFindAll(Observe<Item> observe) {
+        try (PreparedStatement statement = connection.prepareStatement(
+                "SELECT * FROM items"
+        )) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    observe.receive(createItemFromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
